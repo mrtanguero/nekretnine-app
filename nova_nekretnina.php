@@ -18,7 +18,7 @@ include 'db.php';
     <div class="card mt-3">
       <div class="card-body">
         <!-- FORMA -->
-        <form action="kreiraj_novu_nekretninu.php" method="POST">
+        <form action="kreiraj_novu_nekretninu.php" method="POST" enctype="multipart/form-data">
           <!-- naziv nekretnine -->
           <div class="mb-3">
             <label for="naziv_nekretnine" class="form-label">Naziv nekretnine</label>
@@ -41,6 +41,13 @@ include 'db.php';
             </label>
             <input type="text" name="godina_izgradnje" class="form-control" id="godina-izgradnje" />
           </div>
+          <!-- Opis -->
+          <div class="mb-3">
+            <label for="opis" class="form-label">
+              Opis nekretnine
+            </label>
+            <textarea type="text" name="opis" class="form-control" id="opis" rows="4" /></textarea>
+          </div>
           <!-- Grad -->
           <div class="mb-3">
             <label for="grad" class="form-label">
@@ -57,6 +64,27 @@ include 'db.php';
 
               while ($stmt->fetch()) {
                 echo "<option value=\"$id\">$ime_grada</option>";
+              }
+              $stmt->free_result();
+              ?>
+            </select>
+          </div>
+          <!-- Tip oglasa -->
+          <div class="mb-3">
+            <label for="tip-oglasa" class="form-label">
+              Tip oglasa
+            </label>
+            <select name="tip_oglasa" class="form-select" id="tip-oglasa">
+              <option selected>-- Odaberite tip oglasa --</option>
+              <?php
+              $query = "SELECT * FROM tipovi_oglasa";
+              $stmt = $db->prepare($query);
+              $stmt->execute();
+              $stmt->store_result();
+              $stmt->bind_result($id, $tip_oglasa);
+
+              while ($stmt->fetch()) {
+                echo "<option value=\"$id\">$tip_oglasa</option>";
               }
               $stmt->free_result();
               ?>
@@ -84,8 +112,13 @@ include 'db.php';
               ?>
             </select>
           </div>
+          <!-- Slike -->
+          <div class="mb-3">
+            <label for="photos" class="form-label">Fotografije</label>
+            <input type="file" name="photos[]" class="form-control" id="photos" multiple required />
+          </div>
 
-          <button class="btn btn-primary" type="submit">Snimi</button>
+          <button class="btn btn-primary" type="submit">Sačuvaj</button>
         </form>
       </div>
     </div>
