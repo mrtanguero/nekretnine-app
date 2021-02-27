@@ -17,7 +17,7 @@ include 'db.php';
   <div class="container">
     <div class="header d-flex mt-3">
       <h1 class="flex-grow-1">Nekretnine 'Nekretnizam'</h1>
-      <a href="nova_nekretnina.php" class="btn btn-primary px-5" style="line-height: 2.2em;">Dodaj nekretninu</a>
+      <a href="nova_nekretnina.php" class="btn btn-primary px-5" style="line-height: 2.5em;">Dodaj nekretninu</a>
     </div>
     <?php
     $query = "SELECT 
@@ -28,7 +28,7 @@ include 'db.php';
         ime_grada as grad 
       FROM nekretnine 
       JOIN gradovi 
-      WHERE nekretnine.grad = gradovi.id";
+      ON nekretnine.grad = gradovi.id";
     $stmt = $db->prepare($query);
     // $stmt->bind_param('s', $searchterm);
     $stmt->execute();
@@ -48,7 +48,7 @@ include 'db.php';
         while ($stmt->fetch()) {
           echo "<tr>";
           echo "<td>$id</td>";
-          echo "<td>$naziv</td>";
+          echo "<td><a href='./detalji.php?id=$id'>$naziv</a></td>";
           echo "<td>$povrsina</td>";
           echo "<td>$cijena</td>";
           echo "<td>$grad</td>";
