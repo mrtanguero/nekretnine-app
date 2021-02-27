@@ -15,7 +15,10 @@ include 'db.php';
 
 <body>
   <div class="container">
-    <h1>Da li ovo radi?</h1>
+    <div class="header d-flex mt-3">
+      <h1 class="flex-grow-1">Nekretnine 'Nekretnizam'</h1>
+      <a href="nova_nekretnina.php" class="btn btn-primary px-5" style="line-height: 2.2em;">Dodaj nekretninu</a>
+    </div>
     <?php
     $query = "SELECT 
         nekretnine.id as id, 
