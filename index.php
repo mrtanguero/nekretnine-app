@@ -23,8 +23,119 @@ include 'db.php';
         Dodaj nekretninu
       </a>
     </div>
-    <div class="search-box">
-      <p>Ovdje će ići search funkcionalnost</p>
+    <div class="accordion mt-3 mb-3" id="accordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Pretraga
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+          <div class="accordion-body">
+            <div class="search-box">
+              <div class="card-body">
+                <form method="post">
+                  <div class="row g-3 mb-3">
+                    <div class="col">
+                      <input type="text" name="naziv" class="form-control" placeholder="Pretraga po nazivu" aria-label="Pretraga po imenu oglasa" />
+                    </div>
+                    <div class="col">
+                      <input type="text" name="opis" class="form-control" placeholder="Pretraga po opisu" aria-label="Pretraga po opisu">
+                    </div>
+                  </div>
+                  <div class="row g-3 mb-3">
+                    <div class="col">
+                      <input type="text" name="min-cijena" class="form-control" placeholder="Unesite minimalnu cijenu" aria-label="Min cijena">
+                    </div>
+                    <div class="col">
+                      <input type="text" name="max-cijena" class="form-control" placeholder="Unesite maksimalnu cijenu" aria-label="Max cijena">
+                    </div>
+                  </div>
+                  <div class="row g-3 mb-3">
+                    <div class="col">
+                      <input type="text" name="min-povrsina" class="form-control" placeholder="Unesite minimalnu površinu" aria-label="Min povrsina">
+                    </div>
+                    <div class="col">
+                      <input type="text" name="max-povrsina" class="form-control" placeholder="Unesite maksimalnu površinu" aria-label="Max povrsina">
+                    </div>
+                  </div>
+                  <div class="row g-3 mb-3">
+                    <div class="col">
+                      <input type="text" name="min-godina" class="form-control" placeholder="Unesite minimalnu godinu izgradnje" aria-label="Min godina">
+                    </div>
+                    <div class="col">
+                      <input type="text" name="max-godina" class="form-control" placeholder="Unesite maksimalnu godinu izgradnje" aria-label="Max godina">
+                    </div>
+                  </div>
+                  <div class="row g-3 mb-3">
+                    <div class="col">
+                      <select name="grad" class="form-select" id="grad">
+                        <option selected>-- Pretraga po gradu --</option>
+                        <?php
+                        $query = "SELECT * FROM gradovi";
+                        $stmt = $db->prepare($query);
+                        $stmt->execute();
+                        $stmt->store_result();
+                        $stmt->bind_result($id, $ime_grada);
+
+                        while ($stmt->fetch()) {
+                          echo "<option value=\"$id\">$ime_grada</option>";
+                        }
+                        $stmt->free_result();
+                        ?>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <select name="tip_oglasa" class="form-select" id="tip-oglasa">
+                        <option selected>-- Pretraga po tipu oglasa --</option>
+                        <?php
+                        $query = "SELECT * FROM tipovi_oglasa";
+                        $stmt = $db->prepare($query);
+                        $stmt->execute();
+                        $stmt->store_result();
+                        $stmt->bind_result($id, $tip_oglasa);
+
+                        while ($stmt->fetch()) {
+                          echo "<option value=\"$id\">$tip_oglasa</option>";
+                        }
+                        $stmt->free_result();
+                        ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row g-3 mb-3">
+                    <div class="col">
+                      <select name="tip_nekretnine" class="form-select" id="tip-nekretnine">
+                        <option selected>-- Pretraga po tipu nekretnine --</option>
+                        <?php
+                        $query = "SELECT * FROM tipovi_nekretnina";
+                        $stmt = $db->prepare($query);
+                        $stmt->execute();
+                        $stmt->store_result();
+                        $stmt->bind_result($id, $tip_nekretnine);
+
+                        while ($stmt->fetch()) {
+                          echo "<option value=\"$id\">$tip_nekretnine</option>";
+                        }
+                        $stmt->free_result();
+                        ?>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <select name="prodato_izdato" class="form-select" id="tip-oglasa">
+                        <option selected>-- Svi oglasi --</option>
+                        <option value="0">Dostupno</option>
+                        <option value="1">Prodato/izdato</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+                <button type="submit" class="btn btn-primary w-100 text-uppercase">Pretraži</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <?php
     $query = "SELECT 
@@ -41,7 +152,7 @@ include 'db.php';
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($id, $naziv, $povrsina, $cijena, $grad);
-    echo "<p>Rezultata: " . $stmt->num_rows . "</p>"; ?>
+    echo "<p class='mb-0'>Rezultata: " . $stmt->num_rows . "</p>"; ?>
     <table class="table table-striped table-hover">
       <thead>
         <th>ID</th>
@@ -99,6 +210,7 @@ include 'db.php';
       </div>
     </div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   <script src="./js/modal-skripta.js"></script>
 </body>
