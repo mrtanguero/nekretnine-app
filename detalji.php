@@ -47,45 +47,46 @@ $id = intval($_GET['id']);
     echo "<br /><strong>Grad:</strong> $grad</p>";
 
     ?>
+    <div class="carousel-container">
+      <div id="carouseIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <?php
+          for ($i = 0; $i < $number_of_images; $i++) {
+            $active = $i == 0 ? "class='active' aria-current='true'" : '';
+            $slide = $i + 1;
+            echo "<button 
+          type='button' 
+          data-bs-target='#carouseIndicators' data-bs-slide-to='$i'
+          aria-label='Slide $slide'
+          $active</button>";
+          }
+          ?>
+        </div>
+        <div class="carousel-inner">
+          <?php
+          $stmt->execute();
+          for ($i = 0; $i < $number_of_images; $i++) {
+            $stmt->fetch();
+            $slide = $i + 1;
+            $active = $i == 0 ? 'active' : '';
+            echo "<div class='carousel-item $active'>";
+            echo "<img class='d-block w-100' src='$foto_url' alt='Slide number $slide'>";
+            echo "</div>";
+          }
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <?php
-        for ($i = 0; $i < $number_of_images; $i++) {
-          $active = $i == 0 ? "class='active' aria-current='true'" : '';
-          $slide = $i + 1;
-          echo "<button 
-            type='button' 
-            data-bs-target='#carouselExampleIndicators' data-bs-slide-to='$i'
-            aria-label='Slide $slide'
-            $active</button>";
-        }
-        ?>
+          $stmt->free_result();
+          $db->close();
+          ?>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouseIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouseIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-      <div class="carousel-inner">
-        <?php
-        $stmt->execute();
-        for ($i = 0; $i < $number_of_images; $i++) {
-          $stmt->fetch();
-          $slide = $i + 1;
-          $active = $i == 0 ? 'active' : '';
-          echo "<div class='carousel-item $active'>";
-          echo "<img class='d-block w-100' src='$foto_url' alt='Slide number $slide'>";
-          echo "</div>";
-        }
-
-        $stmt->free_result();
-        $db->close();
-        ?>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
