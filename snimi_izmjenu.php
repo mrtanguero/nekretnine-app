@@ -68,7 +68,7 @@ $stmt->bind_param(
 );
 $stmt->execute();
 
-if ($stmt->affected_rows == 0) {
+if (mysqli_errno($db)) {
   $db->rollback();
   exit("Nešto nije bilo u redu sa unosom u bazu (dio podataka bez slika)");
 }

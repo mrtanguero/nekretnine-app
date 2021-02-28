@@ -120,11 +120,13 @@ $id = intval($_GET['id']);
               $stmt = $db->prepare($query);
               $stmt->execute();
               $stmt->store_result();
-              $stmt->bind_result($tip_oglasa_id, $tip_oglasa);
+              $stmt->bind_result($tip_oglasa_id, $tip_oglasa_name);
 
               while ($stmt->fetch()) {
                 $selected = $tip_oglasa == $tip_oglasa_id ? 'selected' : '';
-                echo "<option value=\"$tip_oglasa_id\" $selected>$tip_oglasa</option>";
+                echo "<option value=\"$tip_oglasa_id\" $selected>
+                  $tip_oglasa_name
+                </option>";
               }
               $stmt->free_result();
               ?>

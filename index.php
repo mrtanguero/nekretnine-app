@@ -19,7 +19,9 @@ include 'db.php';
   <div class="container">
     <div class="header d-flex mt-3">
       <h3 class="flex-grow-1">Nekretnine 'Nekretnizam'</h3>
-      <a href="nova_nekretnina.php" class="btn btn-primary px-5" style="line-height: 2.5em;">Dodaj nekretninu</a>
+      <a href="nova_nekretnina.php" class="btn btn-sm btn-primary px-4 lh-lg text-uppercase fw-bolder">
+        Dodaj nekretninu
+      </a>
     </div>
     <div class="search-box">
       <p>Ovdje će ići search funkcionalnost</p>
