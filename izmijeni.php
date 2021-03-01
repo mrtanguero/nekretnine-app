@@ -16,7 +16,6 @@ $id = intval($_GET['id']);
 </head>
 
 <body>
-  <h1 class="text-center">Izmijeni oglas za nekretninu sa ID <?= $id ?></h1>
   <?php
   $query = "SELECT
       nekretnine.id as id,
@@ -52,7 +51,8 @@ $id = intval($_GET['id']);
   );
   $stmt->fetch();
   ?>
-  <div class="container">
+  <div class="container mb-3 mt-3" style="max-width: 800px;">
+    <h1 class="text-center"><?= $naziv ?> </h1>
     <div class="card mt-3">
       <div class="card-body">
         <!-- FORMA -->
@@ -170,17 +170,23 @@ $id = intval($_GET['id']);
           }
           ?>
           <!-- Slike -->
-          <div class="mb-3">
+          <div class="mb-4">
             <label for="photos" class="form-label">Dodaj još fotografija</label>
             <input type="file" name="photos[]" class="form-control" id="photos" multiple />
           </div>
 
-          <button class="btn btn-primary px-5" type="submit">Sačuvaj</button>
+          <button class="btn btn-primary w-100" type="submit">Sačuvaj</button>
         </form>
       </div>
     </div>
   </div>
-
+  <footer>
+    <div class="d-flex justify-content-center mb-4">
+      <a href="index.php" class="me-3">Home</a>
+      <a href="gradovi.php" class="me-3">Gradovi</a>
+      <a href="tipovi_nekretnina.php">Tipovi nekretnina</a>
+    </div>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 

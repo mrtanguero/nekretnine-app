@@ -112,7 +112,7 @@ if (!$pretraga_aktivna) {
     <div class="header d-flex mt-3">
       <h3 class="flex-grow-1">Nekretnine 'Nekretnizam'</h3>
       <a href="nova_nekretnina.php" class="btn btn-sm btn-primary px-4 lh-lg text-uppercase fw-bolder">
-        Dodaj nekretninu
+        Dodaj oglas
       </a>
     </div>
     <div class="accordion mt-3 mb-3" id="accordion">
@@ -246,7 +246,7 @@ if (!$pretraga_aktivna) {
     $stmt->store_result();
     $stmt->bind_result($id, $naziv, $opis, $povrsina, $cijena, $grad); ?>
 
-    <div class='d-flex mb-4 mt-4 align-items-end justify-content-between'>
+    <div class='d-flex mb-4 mt-4 align-items-center justify-content-between'>
       <?= "<p class='mb-0'>Rezultata: " . $stmt->num_rows . "</p>"; ?>
       <button id="clear-search-button" class="btn btn-primary">
         Poništi parametre pretrage (prikaži sve oglase)</button>

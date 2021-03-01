@@ -14,7 +14,8 @@ include 'db.php';
 </head>
 
 <body>
-  <div class="container">
+  <div class="container mt-3 mb-3" style="max-width: 800px;">
+    <h1 class="text-center">Dodaj novi oglas</h1>
     <div class="card mt-3">
       <div class="card-body">
         <!-- FORMA -->
@@ -113,16 +114,23 @@ include 'db.php';
             </select>
           </div>
           <!-- Slike -->
-          <div class="mb-3">
+          <div class="mb-4">
             <label for="photos" class="form-label">Fotografije</label>
             <input type="file" name="photos[]" class="form-control" id="photos" multiple required />
           </div>
 
-          <button class="btn btn-primary" type="submit">Sačuvaj</button>
+          <button class="btn btn-primary w-100" type="submit">Sačuvaj</button>
         </form>
       </div>
     </div>
   </div>
+  <footer class="mb-4">
+    <div class="d-flex justify-content-center">
+      <a href="index.php" class="me-3">Home</a>
+      <a href="gradovi.php" class="me-3">Gradovi</a>
+      <a href="tipovi_nekretnina.php">Tipovi nekretnina</a>
+    </div>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 
